@@ -1,0 +1,50 @@
+<?php
+/**
+ * Created by Claudio Campos.
+ * User: callcocam@gmail.com, contato@sigasmart.com.br
+ * https://www.sigasmart.com.br
+ */
+namespace App\Http\Livewire{{DummyNameSpace}};
+
+use App\Http\Livewire\AbstractFormComponent;
+use App\Models\DummyModel;
+use Illuminate\Database\Eloquent\Model;
+
+class CreateComponent extends AbstractFormComponent
+{
+
+    /**
+     * @return mixed
+     */
+    public function success()
+    {
+        $this->emit('refresh');
+
+        $this->state = $this->fillables();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function query()
+    {
+        if(!$this->builder){
+
+            $this->builder = app(DummyModel::class);
+        }
+        return $this->builder;
+    }
+    public function rules()
+    {
+        //'name' => ['required', 'string', 'max:255']
+        return [ ];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function view()
+    {
+       return landlord_view('DummyView.create');
+    }
+}
